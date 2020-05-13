@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style type="text/css">
+		  .first{
+		  float: left;
+		  padding-right:70px;
+		}
+		.second{
+		  float: left;
+		  padding-right:78px;
+		}
+		.third{
+		  float: left;
+		  padding-right:26px;
+		}
+		.fourth{
+		  float: left;
+		  padding-right:54px;
+		}
+		.field{
+		  clear:both;        
+		  line-height:25px;
+		  padding-bottom:10px;
+		}
+		.subfield{
+		  text-align:right;
+		}
+		.field2{
+		  padding-bottom:10px;
+		}
+		.container{
+		  float: left;
+		}
+		#alertPassword{
+		  color: red;
+		  padding-bottom:10px;
+		  padding-left:120px;
+		}
+		#alertEmail{
+		  color: red;
+		  padding-bottom:10px;
+		  padding-left:120px;
+		}
+		#alertFSName{
+		  color: red;
+		  padding-bottom:10px;
+		  padding-left:120px;
+		}
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <script type = "text/javascript">
+		var sum;
+		function test(){
+		  checkPasswd();
+		  isEmail();
+		  testN();
+		  if (sum == 3){
+			alert("Registration completed successfully!");
+		  }else{
+			alert("Incorrect data!");
+		  }
+		  sum = 0;
+		}
+
+		function checkPasswd(){
+		  var re = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}/g;
+		  var alertText = document.getElementById('alertPassword');
+		  var passwd1 = document.getElementById('pswd1').value;
+		  var passwd2 = document.getElementById('pswd2').value;
+		  if (passwd1 == passwd2){
+			if (re.test(passwd1)){
+			  alertText.innerHTML= " ";
+			  sum = sum + 1;
+			}else{
+			  alertText.innerHTML= "Incorrect password";
+			}
+		  }else{
+			alertText.innerHTML='Password mismatch';
+		  }
+		}
+		function isEmail(){
+		  let str = document.getElementById('email').value;
+		  let alerEm = document.getElementById('alertEmail');
+		  let re = /^[^\s()<>@,;:\/]+@+\w[\w\.-]+\.[a-z]{2,}$/i;
+			if (re.test(str)) {
+			  alerEm.innerHTML = " ";
+			  sum = sum + 1;
+			}
+			  else {
+				if(str.length < 1) {
+				  alerEm.innerHTML = "Empty area";
+				}else{
+					alerEm.innerHTML = "Incorrect email";
+				}
+			  }
+		}
+
+		function testN(){
+			let first = document.getElementById('firstN').value;
+			let second = document.getElementById('secondN').value;
+			let alertN = document.getElementById('alertFSName');
+			if (first.length == 0 || second.length == 0){
+				alertN.innerHTML = "Empty area";
+			}else{
+				alertN.innerHTML = " ";
+				sum = sum + 1;
+			}
+			
+		}
+  </script>
+  <div class="container">
+  <h1>Register form</h1>
+    <p>Please fill in this form to create an account.</p>
+    
+    <div class = "field">
+		<div class="subfield">
+		  <label class = "first" for="email"><b>Email</b></label>
+		  <input id="email" class="text" placeholder="Enter Email" name="email" required>
+		</div>
+		<div>
+		  <label id="alertEmail">  </label>
+		</div>
+    </div>
+
+    <div>
+      <label class="second"><b>Password</b></label>
+      <input type = "password" id="pswd1" class="password" placeholder="Enter Password" name="psw" required>
+    </div>
+    
+    <div>
+      <label class="third"><b>Repeat Password</b></label>
+      <input type = "password" id="pswd2" class="password" placeholder="Repeat Password" name="psw-repeat" required>
+      <div class="field2">
+        <label id="alertPassword"> </label>
+      </div>
+    </div>
+    
+    <div>
+      <label class = "first"><b>First name</b></label>
+      <input id="firstN" class="firstName" placeholder="Enter first name" name="first-name" required>
+    </div>
+    
+    <div class="field2">
+    <label class="fourth"><b>Second name</b></label>
+    <input id="secondN" class="secondName" placeholder="Enter second name" name="second-name" required>
+      <div>
+        <label id="alertFSName"></label>
+      </div>
+    </div>
+    
+    <div>
+    <label class = "fifth" for="secretFord"><b>Secret Word</b></label>
+    <select>
+    <option>Apple</option>
+    <option>Shrek</option>
+    <option>Zone</option>
+    <option>Option</option>
+    <option>Minecraft</option>
+    </select>
+    </div>
+
+    <button type="submit" class="registerbtn" onClick = "test()">Register</button>
+  </div>
+</body>
+</html>
